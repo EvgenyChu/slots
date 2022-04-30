@@ -1,5 +1,6 @@
 package com.template.ui.theme
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -93,7 +94,8 @@ fun FirstScreen(
             Spacer(modifier = Modifier.width(16.dp))
             Button(
                 onClick = {
-                    navController.navigate("Third/${state.coins}")
+                    Log.e("FirstScreen", "${state.coins}")
+                    navController.navigate("ThirdScreen/${state.coins}")
                 },
                 modifier = Modifier
                     .height(56.dp)

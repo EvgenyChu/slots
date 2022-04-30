@@ -11,6 +11,7 @@ import androidx.navigation.navArgument
 import com.template.ui.theme.FirstScreen
 import com.template.ui.theme.SecondScreen
 import com.template.ui.theme.SlotsTheme
+import com.template.ui.theme.ThirdScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +21,14 @@ class MainActivity : ComponentActivity() {
             SlotsTheme {
                 NavHost(navController = navController, startDestination = "FirstScreen") {
                     composable("FirstScreen") { FirstScreen(navController = navController, coins = 1000) }
+                    composable("ThirdScreen/{coins}",
+                        arguments = listOf(navArgument("coins") { type = NavType.IntType })
+                    ) {
+                        ThirdScreen(
+                            navController = navController,
+                            coins = it.arguments?.getInt("coins")
+                        )
+                    }
                     composable(
                         "FirstScreen/{coins}",
                         arguments = listOf(navArgument("coins") { type = NavType.IntType })

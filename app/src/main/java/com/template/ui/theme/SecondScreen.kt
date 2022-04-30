@@ -3,17 +3,17 @@ package com.template.ui.theme
 import android.view.animation.OvershootInterpolator
 import androidx.compose.animation.core.Animatable
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -91,7 +91,7 @@ fun SecondScreen(
                 )
             }
             Divider(Modifier.fillMaxWidth(), color = MaterialTheme.colors.onPrimary)
-            if (state.isSpin == false) NoSpin(state = state.emoji[0])
+            if (!state.isSpin) NoSpin(state = state.emoji[0])
             else {
                 Row(
                     Modifier
@@ -102,7 +102,14 @@ fun SecondScreen(
                 )
                 {
                     Divider(Modifier.width(0.5.dp), color = MaterialTheme.colors.onPrimary)
-                    Column() {
+                    Column(
+                        modifier = Modifier.border(
+                            border = BorderStroke(
+                                1.dp,
+                                MaterialTheme.colors.onPrimary
+                            )
+                        )
+                    ) {
                         Text(
                             text = state.emoji[Random.nextInt(0, 10)],
                             fontSize = 56.sp
@@ -117,7 +124,14 @@ fun SecondScreen(
                         )
                     }
                     Spacer(modifier = Modifier.width(16.dp))
-                    Column() {
+                    Column(
+                        modifier = Modifier.border(
+                            border = BorderStroke(
+                                1.dp,
+                                MaterialTheme.colors.onPrimary
+                            )
+                        )
+                    ) {
                         Text(
                             text = state.emoji[Random.nextInt(0, 10)],
                             fontSize = 56.sp
@@ -132,7 +146,14 @@ fun SecondScreen(
                         )
                     }
                     Spacer(modifier = Modifier.width(16.dp))
-                    Column() {
+                    Column(
+                        modifier = Modifier.border(
+                            border = BorderStroke(
+                                1.dp,
+                                MaterialTheme.colors.onPrimary
+                            )
+                        )
+                    ) {
                         Text(
                             text = state.emoji[Random.nextInt(0, 10)],
                             fontSize = 56.sp
@@ -239,7 +260,14 @@ fun NoSpin(
     )
     {
         Divider(Modifier.width(0.5.dp), color = MaterialTheme.colors.onPrimary)
-        Column() {
+        Column(
+            modifier = Modifier.border(
+                border = BorderStroke(
+                    1.dp,
+                    MaterialTheme.colors.onPrimary
+                )
+            )
+        ) {
             Text(
                 text = state,
                 fontSize = 56.sp
@@ -254,7 +282,14 @@ fun NoSpin(
             )
         }
         Spacer(modifier = Modifier.width(16.dp))
-        Column() {
+        Column(
+            modifier = Modifier.border(
+                border = BorderStroke(
+                    1.dp,
+                    MaterialTheme.colors.onPrimary
+                )
+            )
+        ) {
             Text(
                 text = state,
                 fontSize = 56.sp
@@ -269,7 +304,14 @@ fun NoSpin(
             )
         }
         Spacer(modifier = Modifier.width(16.dp))
-        Column() {
+        Column(
+            modifier = Modifier.border(
+                border = BorderStroke(
+                    1.dp,
+                    MaterialTheme.colors.onPrimary
+                )
+            )
+        ) {
             Text(
                 text = state,
                 fontSize = 56.sp

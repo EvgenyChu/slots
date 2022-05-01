@@ -46,11 +46,16 @@ class SecondViewModel() : ViewModel() {
         _state.value = currentState.copy(openDialog = openDialog, betText = "")
     }
 
+    fun updateBetDialog(betDialog: Boolean){
+        _state.value = currentState.copy(betDialog = betDialog)
+    }
+
     fun updateBet(betCoin: String) {
         try {
             if (betCoin.toInt() > currentState.coins || betCoin.toInt() == 0) _state.value = currentState.copy(betText = "wrong bet")
             else {
                 _state.value = currentState.copy(betText = betCoin, bet = betCoin.toInt())
+                _state.value = currentState.copy(betDialog = true)
             }
         }
         catch (e:Exception){
@@ -78,5 +83,6 @@ data class SecondState(
     val isSpin: Boolean = false,
     val isBet: Boolean = true,
     val isWin: Boolean = true,
-    val openDialog: Boolean = false
+    val openDialog: Boolean = false,
+    val betDialog: Boolean = false
 )

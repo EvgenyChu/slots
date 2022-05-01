@@ -12,8 +12,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -21,7 +19,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.template.viewModel.SecondViewModel
-import kotlinx.coroutines.delay
 import kotlin.random.Random
 
 @Composable
@@ -246,6 +243,11 @@ fun SecondScreen(
             vm.updateSpin(false)
         }
     }
+    if (state.betDialog) {
+        BetDialog {
+            vm.updateBetDialog(betDialog = false)
+        }
+    }
 }
 
 @Composable
@@ -351,6 +353,39 @@ fun WinDialog(
         buttons = {
             Button(
                 onClick = { onDismiss(coins) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(44.dp),
+                shape = RoundedCornerShape(8.dp),
+                colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.secondary)
+            ) {
+                Text(
+                    text = "Ok",
+                    style = MaterialTheme.typography.h5
+                )
+            }
+        }
+    )
+}
+
+@Composable
+fun BetDialog(
+    onDismiss: () -> Unit
+) {
+    AlertDialog(
+        onDismissRequest = {
+            onDismiss()
+        },
+        title = {
+            Text(
+                style = MaterialTheme.typography.h4,
+                text = "The bet is made",
+                textAlign = TextAlign.Center
+            )
+        },
+        buttons = {
+            Button(
+                onClick = { onDismiss() },
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(44.dp),
